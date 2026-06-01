@@ -1,34 +1,92 @@
 # jpvideo
 
-Expo Router project for building the `jpvideo` app across iOS/Android/Web.
+基于 Expo Router 的 `jpvideo` 应用工程，支持 iOS / Android / Web。
 
-## Development
+## 开发
 
-Install dependencies with `pnpm`:
-
-```bash
-pnpm install
-```
-
-Start development server:
+安装依赖：
 
 ```bash
-pnpm expo start
+npm install
 ```
 
-## Key structure
+启动开发服务器：
 
-- `app/`: Expo Router pages and layouts
-- `components/`: reusable UI components
-- `hooks/`: shared React hooks
-- `constants/`: shared constants
-- `assets/`: static assets
-- `ios/`, `android/`: native projects
-- `.claude/`: Claude project settings source
-- `.codex/`: Codex migration output (for this project currently includes migration report)
-- `.agents/skills/`: local skills used by Codex/agents
+```bash
+npx expo start
+```
 
-## Notes
+## 应用变体（App Variants）
 
-- `AGENTS.md` is currently linked to `CLAUDE.md` via migration tooling.
-- Before implementing Expo code, use the versioned docs: <https://docs.expo.dev/versions/v54.0.0/>.
+本项目通过 `APP_VARIANT` 支持 3 套应用变体（默认从 `.env` 加载）：
+
+- `development`
+- `preview`
+- `production`
+
+变体映射如下：
+
+- `development`
+  - 应用名：`jpvideo (Dev)`
+  - iOS bundle id：`com.15158314786.jpvideo.dev`
+  - Android package：`com.x15158314786.jpvideo.dev`
+  - Scheme：`jpvideo-dev`
+- `preview`
+  - 应用名：`jpvideo (Preview)`
+  - iOS bundle id：`com.15158314786.jpvideo.preview`
+  - Android package：`com.x15158314786.jpvideo.preview`
+  - Scheme：`jpvideo-preview`
+- `production`
+  - 应用名：`jpvideo`
+  - iOS bundle id：`com.15158314786.jpvideo`
+  - Android package：`com.x15158314786.jpvideo`
+  - Scheme：`jpvideo`
+
+默认 `.env`：
+
+```bash
+APP_VARIANT=development
+```
+
+你可以通过修改 `.env` 切换默认变体，也可以通过下面命令按次覆盖。
+
+本地命令：
+
+```bash
+APP_VARIANT=development npx expo start
+APP_VARIANT=preview npx expo start
+APP_VARIANT=production npx expo start
+
+APP_VARIANT=development npx expo run:android
+APP_VARIANT=preview npx expo run:android
+APP_VARIANT=production npx expo run:android
+
+APP_VARIANT=development npx expo run:ios
+APP_VARIANT=preview npx expo run:ios
+APP_VARIANT=production npx expo run:ios
+```
+
+EAS 构建命令：
+
+```bash
+npx eas build --profile development
+npx eas build --profile preview
+npx eas build --profile production
+```
+
+## 关键目录结构
+
+- `app/`：Expo Router 页面与布局
+- `components/`：可复用 UI 组件
+- `hooks/`：共享 React Hooks
+- `constants/`：共享常量
+- `assets/`：静态资源
+- `ios/`、`android/`：原生工程
+- `.claude/`：Claude 项目配置来源
+- `.codex/`：Codex 迁移产物（当前包含迁移报告）
+- `.agents/skills/`：Codex / agents 使用的本地技能
+
+## 备注
+
+- `AGENTS.md` 当前通过迁移工具链接到 `CLAUDE.md`。
+- 实现 Expo 相关功能前，优先参考版本化文档：<https://docs.expo.dev/versions/v54.0.0/>。
