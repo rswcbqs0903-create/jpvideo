@@ -1,6 +1,7 @@
 # jpvideo
 
 基于 Expo Router 的 `jpvideo` 应用工程，支持 iOS / Android / Web。
+当前已包含强制更新拦截页的基础实现，用于在旧版本时引导用户跳转 App Store 更新。
 
 ## 开发
 
@@ -81,6 +82,7 @@ npx eas build --profile production
 - `hooks/`：共享 React Hooks
 - `constants/`：共享常量
 - `assets/`：静态资源
+- `docs/`：项目说明文档
 - `ios/`、`android/`：原生工程
 - `.claude/`：Claude 项目配置来源
 - `.codex/`：Codex 迁移产物（当前包含迁移报告）
