@@ -88,6 +88,13 @@ npx eas build --profile production
 - `.codex/`：Codex 迁移产物（当前包含迁移报告）
 - `.agents/skills/`：Codex / agents 使用的本地技能
 
+## 文档索引
+
+- `docs/force-update.md`：强制更新说明
+- `docs/testing-policy.md`：测试分层规则
+- `docs/pr-template.md`：平台中立的 PR 模板正文
+- `.github/PULL_REQUEST_TEMPLATE.md`：PR 检查项模板
+
 ## 备注
 
 - `AGENTS.md` 当前通过迁移工具链接到 `CLAUDE.md`。
