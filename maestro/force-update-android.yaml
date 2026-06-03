@@ -1,0 +1,6 @@
+appId: com.x15158314786.jpvideo.dev
+---
+- launchApp
+- assertVisible: "需要更新"
+- assertVisible: "去 Google Play 更新"
+- tapOn: "去 Google Play 更新"

@@ -25,7 +25,12 @@ export function ForceUpdateScreen({
     <ThemedView style={styles.container}>
       <ThemedText type="title">需要更新</ThemedText>
       <ThemedText style={styles.message}>{message}</ThemedText>
-      <Pressable style={styles.button} onPress={handleUpdate}>
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel={buttonLabel}
+        testID="force-update-button"
+        style={styles.button}
+        onPress={handleUpdate}>
         <ThemedText type="defaultSemiBold" style={styles.buttonText}>
           {buttonLabel}
         </ThemedText>

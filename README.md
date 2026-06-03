@@ -94,6 +94,8 @@ npx eas build --profile production
 - `docs/testing-policy.md`：测试分层规则
 - `docs/pr-template.md`：平台中立的 PR 模板正文
 - `.github/PULL_REQUEST_TEMPLATE.md`：PR 检查项模板
+- `maestro/force-update-ios.yaml`：iOS 强制更新 E2E 测试流
+- `maestro/force-update-android.yaml`：Android 强制更新 E2E 测试流
 
 ## 备注
 
