@@ -83,6 +83,7 @@ npx eas build --profile production
 - `constants/`：共享常量
 - `assets/`：静态资源
 - `docs/`：项目说明文档
+- `metro.config.js`：Expo Metro 默认配置入口
 - `ios/`、`android/`：原生工程
 - `.claude/`：Claude 项目配置来源
 - `.codex/`：Codex 迁移产物（当前包含迁移报告）

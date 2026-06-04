@@ -44,7 +44,6 @@ const config: ExpoConfig = {
   icon: "./assets/images/icon.png",
   scheme: selected.scheme,
   userInterfaceStyle: "automatic",
-  newArchEnabled: true,
   ios: {
     supportsTablet: true,
     bundleIdentifier: selected.iosBundleId,
@@ -59,7 +58,6 @@ const config: ExpoConfig = {
       backgroundImage: "./assets/images/android-icon-background.png",
       monochromeImage: "./assets/images/android-icon-monochrome.png",
     },
-    edgeToEdgeEnabled: true,
     predictiveBackGestureEnabled: false,
     package: selected.androidPackage,
   },
@@ -81,6 +79,9 @@ const config: ExpoConfig = {
         },
       },
     ],
+    "expo-font",
+    "expo-image",
+    "expo-web-browser",
   ],
   experiments: {
     typedRoutes: true,
