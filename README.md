@@ -56,6 +56,8 @@ APP_VARIANT=development
 EXPO_PUBLIC_SENTRY_DSN=你的 Sentry DSN
 ```
 
+Sentry 的环境会直接使用 `APP_VARIANT`，对应 `development`、`preview`、`production` 三个分组。
+
 你可以通过修改 `.env` 切换默认变体，也可以通过下面命令按次覆盖。
 
 本地命令：
