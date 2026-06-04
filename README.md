@@ -2,6 +2,7 @@
 
 基于 Expo Router 的 `jpvideo` 应用工程，支持 iOS / Android / Web。
 当前已包含强制更新拦截页的基础实现，用于在旧版本时引导用户跳转 App Store 更新。
+当前已接入 `expo-observe` 生产性能监控与 `Sentry` 错误上报。
 
 ## 开发
 
@@ -47,6 +48,12 @@ npx expo start
 
 ```bash
 APP_VARIANT=development
+```
+
+如需启用 Sentry，请额外配置：
+
+```bash
+EXPO_PUBLIC_SENTRY_DSN=你的 Sentry DSN
 ```
 
 你可以通过修改 `.env` 切换默认变体，也可以通过下面命令按次覆盖。

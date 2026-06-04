@@ -82,6 +82,7 @@ const config: ExpoConfig = {
     "expo-font",
     "expo-image",
     "expo-web-browser",
+    "@sentry/react-native",
   ],
   experiments: {
     typedRoutes: true,
