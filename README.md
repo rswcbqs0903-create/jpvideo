@@ -1,50 +1,114 @@
-# Welcome to your Expo app 👋
+# jpvideo
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+基于 Expo Router 的 `jpvideo` 应用工程，支持 iOS / Android / Web。
+当前已包含强制更新拦截页的基础实现，用于在旧版本时引导用户跳转 App Store 更新。
+当前已接入 `expo-observe` 生产性能监控与 `Sentry` 错误上报。
 
-## Get started
+## 开发
 
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+安装依赖：
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+启动开发服务器：
 
-## Learn more
+```bash
+npx expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## 应用变体（App Variants）
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+本项目通过 `APP_VARIANT` 支持 3 套应用变体（默认从 `.env` 加载）：
 
-## Join the community
+- `development`
+- `preview`
+- `production`
 
-Join our community of developers creating universal apps.
+变体映射如下：
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- `development`
+  - 应用名：`jpvideo (Dev)`
+  - iOS bundle id：`com.15158314786.jpvideo.dev`
+  - Android package：`com.x15158314786.jpvideo.dev`
+  - Scheme：`jpvideo-dev`
+- `preview`
+  - 应用名：`jpvideo (Preview)`
+  - iOS bundle id：`com.15158314786.jpvideo.preview`
+  - Android package：`com.x15158314786.jpvideo.preview`
+  - Scheme：`jpvideo-preview`
+- `production`
+  - 应用名：`jpvideo`
+  - iOS bundle id：`com.15158314786.jpvideo`
+  - Android package：`com.x15158314786.jpvideo`
+  - Scheme：`jpvideo`
+
+默认 `.env`：
+
+```bash
+APP_VARIANT=development
+```
+
+如需启用 Sentry，请额外配置：
+
+```bash
+EXPO_PUBLIC_SENTRY_DSN=你的 Sentry DSN
+```
+
+Sentry 的环境会直接使用 `APP_VARIANT`，对应 `development`、`preview`、`production` 三个分组。
+
+你可以通过修改 `.env` 切换默认变体，也可以通过下面命令按次覆盖。
+
+本地命令：
+
+```bash
+APP_VARIANT=development npx expo start
+APP_VARIANT=preview npx expo start
+APP_VARIANT=production npx expo start
+
+APP_VARIANT=development npx expo run:android
+APP_VARIANT=preview npx expo run:android
+APP_VARIANT=production npx expo run:android
+
+APP_VARIANT=development npx expo run:ios
+APP_VARIANT=preview npx expo run:ios
+APP_VARIANT=production npx expo run:ios
+```
+
+EAS 构建命令：
+
+```bash
+npx eas build --profile development
+npx eas build --profile preview
+npx eas build --profile production
+```
+
+## 关键目录结构
+
+- `app/`：Expo Router 页面与布局
+- `components/`：可复用 UI 组件
+- `hooks/`：共享 React Hooks
+- `constants/`：共享常量
+- `assets/`：静态资源
+- `docs/`：项目说明文档
+- `metro.config.js`：Expo Metro 默认配置入口
+- `ios/`、`android/`：原生工程
+- `.claude/`：Claude 项目配置来源
+- `.codex/`：Codex 迁移产物（当前包含迁移报告）
+- `.agents/skills/`：Codex / agents 使用的本地技能
+
+## 文档索引
+
+- `docs/force-update.md`：强制更新说明
+- `docs/testing-policy.md`：测试分层规则
+- `docs/pr-template.md`：平台中立的 PR 模板正文
+- `docs/android-build-troubleshooting.md`：Android 构建排障记录，包含 SDK 路径和代理/TLS 问题
+- `.github/PULL_REQUEST_TEMPLATE.md`：PR 检查项模板
+- `maestro/force-update-ios.yaml`：iOS 强制更新 E2E 测试流
+- `maestro/force-update-android.yaml`：Android 强制更新 E2E 测试流
+
+## 备注
+
+- `AGENTS.md` 当前通过迁移工具链接到 `CLAUDE.md`。
+- 实现 Expo 相关功能前，优先参考版本化文档：<https://docs.expo.dev/versions/v54.0.0/>。
